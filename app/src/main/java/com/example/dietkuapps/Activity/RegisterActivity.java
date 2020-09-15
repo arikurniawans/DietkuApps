@@ -3,15 +3,23 @@ package com.example.dietkuapps.Activity;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.example.dietkuapps.Kelas.AppController;
 import com.example.dietkuapps.Kelas.ConfigApi;
 import com.example.dietkuapps.R;
 
@@ -24,15 +32,27 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 Button btnRegister;
 EditText etNik, etNama, etTelp, etUsername, etPassword;
 TextView txtLogin;
+ProgressDialog pDialog;
+int success;
+ConnectivityManager conMgr;
+private static final String TAG = RegisterActivity.class.getSimpleName();
+private static final String TAG_SUCCESS = "success";
+private static final String TAG_MESSAGE = "message";
+String tag_json_obj = "json_obj_req";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -91,55 +111,87 @@ TextView txtLogin;
     public void Register(final String nik, final String nama, final String nope, final String username, final String password){
     btnRegister.setEnabled(false);
     btnRegister.setText("Proccessing...");
-        class SendPostReqAsyncTask extends AsyncTask<String, Void, String> {
-            @Override
-            protected String doInBackground(String... params) {
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+        pDialog.setMessage("Register ...");
+        showDialog();
 
-                List<NameValuePair> nameValuePairs = new ArrayList<>();
-                nameValuePairs.add(new BasicNameValuePair("nik", nik));
-                nameValuePairs.add(new BasicNameValuePair("nama", nama));
-                nameValuePairs.add(new BasicNameValuePair("telp", nope));
-                nameValuePairs.add(new BasicNameValuePair("username", username));
-                nameValuePairs.add(new BasicNameValuePair("password", password));
+        StringRequest strReq = new StringRequest(Request.Method.POST, ConfigApi.RegisApi, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Register Response: " + response.toString());
+                hideDialog();
 
                 try {
-                    HttpClient httpClient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost(
-                            ConfigApi.RegisApi);
-                    httpPost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                    JSONObject jObj = new JSONObject(response);
+                    success = jObj.getInt(TAG_SUCCESS);
 
-                    HttpResponse response = httpClient.execute(httpPost);
+                    // Check for error node in json
+                    if (success == 1) {
 
-                    HttpEntity entity = response.getEntity();
+                        Log.e("Successfully Register!", jObj.toString());
+
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
 
 
-                } catch (ClientProtocolException e) {
+                    } else {
+                        Toast.makeText(getApplicationContext(),
+                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                        btnRegister.setEnabled(true);
+                        btnRegister.setText("Sign Up");
+
+                    }
+                } catch (JSONException e) {
+                    // JSON error
                     e.printStackTrace();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
                 }
-                return "success";
-            }
 
+            }
+        }, new Response.ErrorListener() {
 
             @Override
-            protected void onPostExecute(String result) {
-                super.onPostExecute(result);
-                if(result.equalsIgnoreCase("success")){
-                    Toast.makeText(getApplication(),"Berhasil register",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
 
-                }else{
-                    Toast.makeText(getApplication(),"Gagal Simpan Data",Toast.LENGTH_LONG).show();
-                }
+                hideDialog();
+                btnRegister.setEnabled(true);
+                btnRegister.setText("Sign Up");
+
             }
-        }
-        SendPostReqAsyncTask sendPostReqAsyncTask = new SendPostReqAsyncTask();
-        sendPostReqAsyncTask.execute(nik, nama, nope, username, password);
+        }) {
 
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("nik", nik);
+                params.put("nama", nama);
+                params.put("telp", nope);
+                params.put("username", username);
+                params.put("password", password);
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
+
+    }
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
     }
 
 }
