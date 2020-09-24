@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Diet Apps</string>
+
+    <string-array name="jenis_kelamin">
+        <item>Laki-laki</item>
+        <item>Perempuan</item>
+    </string-array>
+
+    <string-array name="tujuan_diet">
+        <item>Penurunan Berat Badan Rendah Kalori</item>
+        <item>Diet Diabetes Melitus</item>
+        <item>Diet Rendah Natrium</item>
+        <item>Diet Penyakit Gout Artritis</item>
+    </string-array>
+
 </resources>

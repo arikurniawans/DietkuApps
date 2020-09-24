@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/fragment_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/app_name"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textViewLabel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sign Up"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/startblue"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        tools:ignore="RtlCompat" />
+
+    <ScrollView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="2dp"
+        android:id="@+id/cardDetail"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
+        app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Nama Lengkap"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/textViewLabel1"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:id="@+id/etDetNama"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Pekerjaan"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetNama"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:id="@+id/etDetPekerjaan"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Tanggal Lahir"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetPekerjaan"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:maxLength="10"
+        android:id="@+id/etDetTgl"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Usia"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetTgl"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:maxLength="10"
+        android:id="@+id/etDetUsia"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:text="Jenis Kelamin :"
+            android:textColor="@color/startblue"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/etDetUsia"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/etDetJenkel"
+        android:entries="@array/jenis_kelamin"
+        android:padding="15dp">
+    </Spinner>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Berat Badan (Kg)"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetJenkel"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:maxLength="3"
+        android:id="@+id/etDetBerat"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Tinggi Badan (Cm)"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetBerat"
+        android:layout_centerHorizontal="true"
+        android:inputType="number"
+        android:maxLength="3"
+        android:id="@+id/etDetTinggi"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:hint="Riwayat Penyakit"
+        android:textSize="15dp"
+        android:textColor="@color/startblue"
+        android:textColorHint="@color/startblue"
+        android:layout_below="@+id/etDetTinggi"
+        android:layout_centerHorizontal="true"
+        android:inputType="text"
+        android:id="@+id/etDetRiwayat"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:id="@+id/tvTujuan"
+            android:text="Tujuan Diet :"
+            android:textColor="@color/startblue"/>
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTujuan"
+            android:layout_centerHorizontal="true"
+            android:id="@+id/etDetTujuan"
+            android:entries="@array/tujuan_diet"
+            android:padding="15dp">
+        </Spinner>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Sign Up"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/etDetRiwayat"
+        android:layout_alignStart="@id/etDetRiwayat"
+        android:id="@+id/btnKons"
+        tools:ignore="RtlCompat" />
+
+    </LinearLayout>
+    </androidx.cardview.widget.CardView>
+    </ScrollView>
+
+</RelativeLayout>

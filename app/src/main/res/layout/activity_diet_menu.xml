@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/fragment_container"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    app:layout_behavior="@string/app_name"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/textViewLabel1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Diet"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:textColor="@color/startblue"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="18dp"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Penurunan Berat Badan Rendah Kalori"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/textViewLabel1"
+        android:layout_alignStart="@id/textViewLabel1"
+        android:id="@+id/btndiet1"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Diet Diabetes Melitus"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/btndiet1"
+        android:layout_alignStart="@id/btndiet1"
+        android:id="@+id/btndiet2"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Diet Rendah Natrium"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/btndiet2"
+        android:layout_alignStart="@id/btndiet2"
+        android:id="@+id/btndiet3"
+        tools:ignore="RtlCompat" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:hint="Diet Penyakit Gout Artritis"
+        android:background="@drawable/curvebutton"
+        android:textColorHint="#fff"
+        android:textStyle="bold"
+        android:layout_below="@id/btndiet3"
+        android:layout_alignStart="@id/btndiet3"
+        android:id="@+id/btndiet4"
+        tools:ignore="RtlCompat" />
+
+    <ImageView
+        android:id="@+id/imgIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="250dp"
+        android:src="@drawable/tabeldiet"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"/>
+
+
+</RelativeLayout>

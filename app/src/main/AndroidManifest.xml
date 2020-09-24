@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".Kelas.AppController"
@@ -14,16 +15,35 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DetailDietActivity"
-            android:parentActivityName=".Activity.DietActivity">
+        <activity android:name=".Activity.KonsulActivity"></activity>
+        <activity
+            android:name=".Activity.DetailInfoDietActivity"
+            android:parentActivityName=".Activity.DietMenuActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" /></activity>
-        <activity android:name=".Activity.DietActivity"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.DietMenuActivity"
             android:parentActivityName=".Activity.HomeActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" /></activity>
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.DetailDietActivity"
+            android:parentActivityName=".Activity.DietActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Activity.DietActivity"
+            android:parentActivityName=".Activity.HomeActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
         <activity
             android:name=".Activity.ProfilActivity"
             android:parentActivityName=".Activity.HomeActivity">

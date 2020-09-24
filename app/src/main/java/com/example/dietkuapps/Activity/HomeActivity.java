@@ -55,7 +55,7 @@ CardView cardDiet, cardProfil, cardSenam, cardKonsul;
         cardDiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, DietActivity.class);
+                Intent intent = new Intent(HomeActivity.this, DietMenuActivity.class);
                 startActivity(intent);
             }
         });

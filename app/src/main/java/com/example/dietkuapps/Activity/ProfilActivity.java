@@ -18,7 +18,7 @@ import com.example.dietkuapps.R;
 public class ProfilActivity extends AppCompatActivity {
 TextView txtNik, txtNama;
 ImageView imgProfil;
-Button btnLogout;
+Button btnLogout, btnKonsul;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ Button btnLogout;
         txtNama = (TextView) findViewById(R.id.txtNama);
         imgProfil = (ImageView) findViewById(R.id.imgProfil);
         btnLogout = (Button) findViewById(R.id.btnLogout);
+        btnKonsul = (Button) findViewById(R.id.btnKonsul);
 
         txtNik.setText(SharedVariabel.NIK);
         txtNama.setText(SharedVariabel.NamaLengkap);
@@ -62,6 +63,14 @@ Button btnLogout;
                 });
                 AlertDialog alert = builder.create();
                 alert.show();
+            }
+        });
+
+        btnKonsul.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProfilActivity.this, KonsulActivity.class);
+                startActivity(intent);
             }
         });
 
